@@ -7,8 +7,8 @@ export default function Card({ product }) {
                     alt="product image"
                 />
             </figure>
-            <div className="card-body">
-                <b>{product.name}</b>
+            <div className="card-body flex-1">
+                <b>{product.description}</b>
             </div>
         </div>
     </>)

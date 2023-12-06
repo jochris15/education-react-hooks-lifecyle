@@ -8,7 +8,7 @@ export default function Card({ product }) {
                 />
             </figure>
             <div className="card-body">
-                <b>{product.name}</b>
+                <b>{product.description}</b>
             </div>
         </div>
     </>)

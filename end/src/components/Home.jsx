@@ -12,7 +12,7 @@ export default function Home({ setPage }) {
     async function fetchProducts() {
         try {
             setLoading(true)
-            const { data } = await axios.get(`${url}/apis/pub/branded-things/products?q=${search}&limit=8&page=3&sort=ASC`);
+            const { data } = await axios.get(`${url}/apis/pub/branded-things/products?q=${search}&limit=8&page=1&sort=ASC`);
             setProducts(data.data.query);
             console.log(data.data.query);
         } catch (error) {
@@ -33,43 +33,46 @@ export default function Home({ setPage }) {
     }
 
     useEffect(() => {
-        console.log('ini use effect tanpa dependencies');
-    }) // ini dijalanin setiap ada komponen rerender
+        console.log('ini proses re-render, akan dijalakan setiap ada sesuatu yang berubah dalam komponen ini');
+    }) // re-render
 
     useEffect(() => {
+        console.log('ini proses mounted, hanya dijalankan 1x di awal');
         fetchProducts();
-    }, []) // ini hanya dijalanin 1x di awal, ketika component "Home.jsx" di render
+    }, []) // mounted
 
     useEffect(() => {
+        console.log('ini adalah watchers, akan dijalankan ketika state yg di pantau berubah, ngesearch bedasarkan description');
         fetchProducts();
-    }, [search]) // useEffect ini akan jalan ketika state search ada perubahan
+    }, [search]) // watchers
 
-    // useEffect(() => {
-    //     return () => {
-    //         let timerInterval;
-    //         Swal.fire({
-    //             title: "Auto close alert!",
-    //             html: "I will close in <b></b> milliseconds.",
-    //             timer: 1000,
-    //             timerProgressBar: true,
-    //             didOpen: () => {
-    //                 Swal.showLoading();
-    //                 const timer = Swal.getPopup().querySelector("b");
-    //                 timerInterval = setInterval(() => {
-    //                     timer.textContent = `${Swal.getTimerLeft()}`;
-    //                 }, 100);
-    //             },
-    //             willClose: () => {
-    //                 clearInterval(timerInterval);
-    //             }
-    //         }).then((result) => {
-    //             /* Read more about handling dismissals below */
-    //             if (result.dismiss === Swal.DismissReason.timer) {
-    //                 console.log("I was closed by the timer");
-    //             }
-    //         });
-    //     }
-    // }, []) // akan menjalankan isi dari function yang di return ketika terjadi proses unmount
+    useEffect(() => {
+        return () => {
+            console.log('ini adalah proses unmounted,akan dijalankan ketika penggantian komponen');
+            let timerInterval;
+            Swal.fire({
+                title: "Auto close alert!",
+                html: "I will close in <b></b> milliseconds.",
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 100);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                }
+            });
+        }
+    }, []) // unmounted 
 
     return (
         <>
@@ -91,7 +94,7 @@ export default function Home({ setPage }) {
                         <img src={gearLoad} />
                     </div>
                 ) : (
-                    <main className="grid grid-cols-4 gap-5 px-10 my-8 bg-white">
+                    <main className="grid grid-cols-2 gap-5 px-10 my-8 bg-white">
                         {products.map(product => {
                             return <Card key={product.id} product={product} />
                         })}

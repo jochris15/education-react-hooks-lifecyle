@@ -9,22 +9,6 @@ export default function Home({ setPage }) {
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState('')
     const url = 'https://phase2-aio.vercel.app'
-    async function fetchProducts() {
-        try {
-            setLoading(true)
-            const { data } = await axios.get(`${url}/apis/pub/branded-things/products?q=${search}&limit=8&page=3&sort=ASC`);
-            setProducts(data.data.query);
-            console.log(data.data.query);
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                title: error.response.data.error,
-            });
-        } finally {
-            setLoading(false)
-        }
-    }
 
     // search
     function searchOnChange(event) {
@@ -52,7 +36,7 @@ export default function Home({ setPage }) {
                         <img src={gearLoad} />
                     </div>
                 ) : (
-                    <main className="grid grid-cols-4 gap-5 px-10 my-8 bg-white">
+                    <main className="grid grid-cols-2 gap-5 px-10 my-8 bg-white">
                         {products.map(product => {
                             return <Card key={product.id} product={product} />
                         })}
