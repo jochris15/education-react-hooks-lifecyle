@@ -1,20 +1,11 @@
 import Card from "../components/Card";
-import axios from 'axios';
 import { useState } from "react";
-import Swal from "sweetalert2";
 import gearLoad from "./assets/Gear-0.2s-264px.svg"
 
 export default function Home({ setPage }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
-    const [search, setSearch] = useState('')
     const url = 'https://phase2-aio.vercel.app'
-
-    // search
-    function searchOnChange(event) {
-        let newSearch = event.target.value;
-        setSearch(newSearch);
-    }
 
     return (
         <>
@@ -27,7 +18,6 @@ export default function Home({ setPage }) {
                         name="search"
                         placeholder="Search"
                         className="input input-bordered input-accent w-24 md:w-auto mx-1 input-sm"
-                        onChange={searchOnChange}
                     />
                 </form>
 
@@ -36,7 +26,7 @@ export default function Home({ setPage }) {
                         <img src={gearLoad} />
                     </div>
                 ) : (
-                    <main className="grid grid-cols-2 gap-5 px-10 my-8 bg-white">
+                    <main className="grid grid-cols-2 gap-5 my-8 bg-white">
                         {products.map(product => {
                             return <Card key={product.id} product={product} />
                         })}
