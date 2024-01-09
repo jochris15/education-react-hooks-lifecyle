@@ -55,7 +55,10 @@ useEffect(() => {
 - siapkan function untuk handle submit form axios post
 - pindah ke halaman home
 
-## Delete Data
-- siapkan function untuk delete data yang menerima parameter id
-- lakukan delete menggunakan axios
-- untuk mendapatkan data terbaru, panggil function fetch data, atau manipulasi data di state
+## Add Data (with authentication)
+- siapkan beberapa state untuk menyimpan perubahan input form
+- gunakan setter di event on change per input dalam formnya, value yang digunakan untuk setter berasal dari event.target.value, agar perubahan input dapat diterima
+- siapkan function untuk menambahkan data ke dalam database , jangan lupa pasang tokennya di headers
+- siapkan function untuk memanggil entitas support
+- gunakan useEffect mounted untuk melakukan fetch data entitas support saat awal component di-render
+- pasang function untuk menambahkan data di onSubmit formnya
