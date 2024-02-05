@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import gearLoad from "./assets/Gear-0.2s-264px.svg"
 
-export default function Home({ setPage }) {
+export default function Home() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState('')

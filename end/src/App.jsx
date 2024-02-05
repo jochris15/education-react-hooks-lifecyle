@@ -21,7 +21,7 @@ export default function App() {
         <>
             <Nav setPage={setPage} />
             <br />
-            {page === 'home' && <Home setPage={setPage} />}
+            {page === 'home' && <Home />}
             {!token && page === 'login' && <Login setPage={setPage} />}
             {token && page === 'form' && <ProductsForm setPage={setPage} />}
         </>

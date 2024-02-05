@@ -1,25 +1,8 @@
-import Swal from "sweetalert2";
-import axios from 'axios';
 import { useState } from 'react'
 
-export default function Login({ setPage }) {
+export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const url = 'https://phase2-aio.vercel.app'
-
-    async function handleLogin(event) {
-        event.preventDefault();
-        try {
-            let { data } = await axios.post(`${url}/apis/login`, { email, password });
-            localStorage.setItem("access_token", data.data.access_token);
-            setPage('home')
-        } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: error.response.data.error
-            })
-        }
-    }
 
     return (
         <>
@@ -53,7 +36,7 @@ export default function Login({ setPage }) {
                             />
                         </div>
                         <div>
-                            <button onClick={handleLogin} className="btn btn-accent">Log In</button>
+                            <button className="btn btn-accent">Log In</button>
                         </div>
                     </form>
                 </div>
