@@ -2,7 +2,7 @@ import Card from "../components/Card";
 import { useState } from "react";
 
 export default function Home() {
-    const [products, setProducts] = useState([[
+    const [products, setProducts] = useState([
         {
             "id": 36,
             "name": "credo",
@@ -219,7 +219,7 @@ export default function Home() {
                 "updatedAt": "2024-01-08T08:48:03.959Z"
             }
         }
-    ]]);
+    ]);
 
     return (
         <>
