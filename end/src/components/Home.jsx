@@ -1,78 +1,62 @@
 import Card from "../components/Card";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import Toastify from 'toastify-js'
 import gearLoad from "./assets/Gear-0.2s-264px.svg"
 
-export default function Home() {
+export default function Home({ url }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState('')
-    const url = 'https://phase2-aio.vercel.app'
     async function fetchProducts() {
         try {
             setLoading(true)
             const { data } = await axios.get(`${url}/apis/pub/branded-things/products?q=${search}&limit=8&page=1&sort=ASC`);
             setProducts(data.data.query);
-            console.log(data.data.query);
         } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                title: error.response.data.error,
-            });
+            Toastify({
+                text: error.response.data.error,
+                duration: 2000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "left",
+                stopOnFocus: true,
+                style: {
+                    background: "#EF4C54",
+                    color: "#17202A",
+                    boxShadow: "0 5px 10px black",
+                    fontWeight: "bold"
+                }
+            }).showToast();
         } finally {
             setLoading(false)
         }
     }
 
-    // search
-    function searchOnChange(event) {
-        let newSearch = event.target.value;
-        setSearch(newSearch);
-    }
-
+    // lifecyle re-render
     useEffect(() => {
         console.log('ini proses re-render, akan dijalakan setiap ada sesuatu yang berubah dalam komponen ini');
-    }) // re-render
+    })
 
+    // lifecyle mounted
     useEffect(() => {
-        console.log('ini proses mounted, hanya dijalankan 1x di awal');
+        console.log('ini proses mounted, akan dijalankan sebelum pemasangan dom & react di komponen ini (saat memasuki komponen ini)');
         fetchProducts();
     }, []) // mounted
 
+    // lifecyle watchers
     useEffect(() => {
-        console.log('ini adalah watchers, akan dijalankan ketika state yg di pantau berubah, ngesearch bedasarkan description');
+        console.log('ini adalah watchers, akan dijalankan sebelum pemasangan dom & react di komponen ini dan ketika state yg di pantau dalam dependencies(parameter kedua) berubah');
         fetchProducts();
-    }, [search]) // watchers
+    }, [search])
 
+    // lifecyle unmounted
     useEffect(() => {
         return () => {
-            console.log('ini adalah proses unmounted,akan dijalankan ketika penggantian komponen');
-            let timerInterval;
-            Swal.fire({
-                title: "Auto close alert!",
-                html: "I will close in <b></b> milliseconds.",
-                timer: 1000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 100);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                }
-            }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log("I was closed by the timer");
-                }
-            });
+            console.log('ini adalah proses unmounted,akan dijalankan sebelum pencopotan dom & react di komponen ini (saat mau ganti komponen)');
         }
-    }, []) // unmounted 
+    }, [])
 
     return (
         <>
@@ -85,7 +69,7 @@ export default function Home() {
                         name="search"
                         placeholder="Search"
                         className="input input-bordered input-accent w-24 md:w-auto mx-1 input-sm"
-                        onChange={searchOnChange}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                 </form>
 

@@ -1,23 +1,49 @@
-import Swal from "sweetalert2";
 import axios from 'axios';
 import { useState } from 'react'
+import Toastify from 'toastify-js'
 
-export default function Login({ setPage }) {
+export default function Login({ setPage, url }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const url = 'https://phase2-aio.vercel.app'
 
     async function handleLogin(event) {
         event.preventDefault();
         try {
             let { data } = await axios.post(`${url}/apis/login`, { email, password });
             localStorage.setItem("access_token", data.data.access_token);
+
+            Toastify({
+                text: "Success Login",
+                duration: 2000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "left",
+                stopOnFocus: true,
+                style: {
+                    background: "#00B29F",
+                    color: "#17202A",
+                    boxShadow: "0 5px 10px black",
+                    fontWeight: "bold"
+                }
+            }).showToast();
             setPage('home')
         } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: error.response.data.error
-            })
+            Toastify({
+                text: error.response.data.error,
+                duration: 2000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "left",
+                stopOnFocus: true,
+                style: {
+                    background: "#EF4C54",
+                    color: "#17202A",
+                    boxShadow: "0 5px 10px black",
+                    fontWeight: "bold"
+                }
+            }).showToast();
         }
     }
 

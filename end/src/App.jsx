@@ -7,6 +7,7 @@ import ProductsForm from './components/ProductsForm'
 import { useEffect } from 'react'
 
 export default function App() {
+    const url = 'https://phase2-aio.vercel.app'
     const [page, setPage] = useState('home')
     let token = localStorage.access_token
     useEffect(() => {
@@ -21,9 +22,9 @@ export default function App() {
         <>
             <Nav setPage={setPage} />
             <br />
-            {page === 'home' && <Home />}
-            {!token && page === 'login' && <Login setPage={setPage} />}
-            {token && page === 'form' && <ProductsForm setPage={setPage} />}
+            {token && page === 'home' && <Home url={url} />}
+            {!token && page === 'login' && <Login setPage={setPage} url={url} />}
+            {token && page === 'form' && <ProductsForm setPage={setPage} url={url} />}
         </>
     )
 }

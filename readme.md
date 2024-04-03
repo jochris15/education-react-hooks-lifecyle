@@ -1,10 +1,12 @@
 # REACT LIFECYCLE
 
 ## useEffect
+useEffect adalah sebuah react hook yang memungkinkan kita untuk mengsynchronize komponen kita dengan external system
+
 ```js
 useEffect(setup, dependecies?)
 ```
-
+[Dokumentasi useEffect](https://react.dev/reference/react/useEffect)
 ### effect
 ```js
 useEffect(() => {
