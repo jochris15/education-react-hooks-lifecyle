@@ -19,8 +19,8 @@ export default function Home({ url }) {
                 duration: 2000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
-                position: "left",
+                gravity: "bottom",
+                position: "right",
                 stopOnFocus: true,
                 style: {
                     background: "#EF4C54",

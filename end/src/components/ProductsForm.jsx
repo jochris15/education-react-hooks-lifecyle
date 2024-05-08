@@ -25,8 +25,8 @@ export default function ProductsForm({ setPage, url }) {
                 duration: 2000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
-                position: "left",
+                gravity: "bottom",
+                position: "right",
                 stopOnFocus: true,
                 style: {
                     background: "#EF4C54",
@@ -51,8 +51,8 @@ export default function ProductsForm({ setPage, url }) {
                 duration: 2000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
-                position: "left",
+                gravity: "bottom",
+                position: "right",
                 stopOnFocus: true,
                 style: {
                     background: "#00B29F",
@@ -68,8 +68,8 @@ export default function ProductsForm({ setPage, url }) {
                 duration: 2000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
-                position: "left",
+                gravity: "bottom",
+                position: "right",
                 stopOnFocus: true,
                 style: {
                     background: "#EF4C54",
