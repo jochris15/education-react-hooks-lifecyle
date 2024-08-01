@@ -82,7 +82,7 @@ export default function ProductsForm() {
                             onChange={(e) => setName(e.target.value)}
                             type="text"
                             placeholder="Name"
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                         />
                     </div>
                     <div>
@@ -93,7 +93,7 @@ export default function ProductsForm() {
                             onChange={(e) => setDescription(e.target.value)}
                             type="text"
                             placeholder="Enter Description"
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                         />
                     </div>
                     <div>
@@ -104,7 +104,7 @@ export default function ProductsForm() {
                             onChange={(e) => setPrice(e.target.value)}
                             type="number"
                             placeholder="Enter Price"
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                         />
                     </div>
                     <div>
@@ -115,7 +115,7 @@ export default function ProductsForm() {
                             onChange={(e) => setStock(e.target.value)}
                             type="number"
                             placeholder="Enter Stock"
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                         />
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export default function ProductsForm() {
                             onChange={(e) => setImgUrl(e.target.value)}
                             type="text"
                             placeholder="Image URL"
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                         />
                         {/* <a href="" class="text-xs ml-1 text-gray-600 hover:text-primary">Want to upload a file instead?</a> */}
                     </div>
@@ -135,7 +135,7 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Category</span>
                         </label>
                         <select
-                            className="w-full input input-bordered input-primary"
+                            className="w-full input input-bordered input-accent"
                             onChange={(e) => setCategoryId(e.target.value)}
                             name="category"
                             id=""

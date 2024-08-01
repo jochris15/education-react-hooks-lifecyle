@@ -7,7 +7,7 @@ import ProductsForm from './components/ProductsForm'
 import { useEffect } from 'react'
 
 export default function App() {
-    const url = 'https://phase2-aio.vercel.app'
+    const url = 'https://h8-phase2-gc.vercel.app'
     const [page, setPage] = useState('home')
     let token = localStorage.access_token
     useEffect(() => {
