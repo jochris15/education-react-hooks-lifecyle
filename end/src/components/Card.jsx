@@ -1,15 +1,17 @@
 export default function Card({ product }) {
-    return (<>
-        <div className="card bg-gray-100 shadow-2xl flex flex-row">
-            <figure>
-                <img
-                    src={product.imgUrl}
-                    alt="product image"
-                />
-            </figure>
-            <div className="card-body flex-1">
-                <b>{product.description}</b>
+    return (
+        <>
+            <div className="card bg-base-100 shadow-xl">
+                <figure>
+                    <img
+                        src={product.imgUrl}
+                        alt="product" />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title">{product.name}</h2>
+                    <p>{product.description}</p>
+                </div>
             </div>
-        </div>
-    </>)
+        </>
+    )
 }

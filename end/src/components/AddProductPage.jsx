@@ -1,12 +1,7 @@
-import { useState } from "react";
+import { useState } from "react"
+import Navbar from "./Navbar"
 
-export default function ProductsForm() {
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [price, setPrice] = useState(0)
-    const [imgUrl, setImgUrl] = useState("")
-    const [stock, setStock] = useState(0)
-    const [categoryId, setCategoryId] = useState("")
+export default function AddProductPage({ setPage }) {
     const [categories, setCategories] = useState([
         {
             "id": 1,
@@ -68,10 +63,11 @@ export default function ProductsForm() {
             "createdAt": "2024-01-08T08:48:04.232Z",
             "updatedAt": "2024-01-08T08:48:04.232Z"
         }
-    ]);
+    ])
 
     return (
         <>
+            <Navbar setPage={setPage} />
             <form>
                 <div className=" grid grid-cols-2 gap-4">
                     <div>
@@ -79,7 +75,6 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Name</span>
                         </label>
                         <input
-                            onChange={(e) => setName(e.target.value)}
                             type="text"
                             placeholder="Name"
                             className="w-full input input-bordered input-accent"
@@ -90,7 +85,6 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Description</span>
                         </label>
                         <input
-                            onChange={(e) => setDescription(e.target.value)}
                             type="text"
                             placeholder="Enter Description"
                             className="w-full input input-bordered input-accent"
@@ -101,7 +95,6 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Price</span>
                         </label>
                         <input
-                            onChange={(e) => setPrice(e.target.value)}
                             type="number"
                             placeholder="Enter Price"
                             className="w-full input input-bordered input-accent"
@@ -112,7 +105,6 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Stock</span>
                         </label>
                         <input
-                            onChange={(e) => setStock(e.target.value)}
                             type="number"
                             placeholder="Enter Stock"
                             className="w-full input input-bordered input-accent"
@@ -123,12 +115,10 @@ export default function ProductsForm() {
                             <span className="text-base label-text">Image (URL)</span>
                         </label>
                         <input
-                            onChange={(e) => setImgUrl(e.target.value)}
                             type="text"
                             placeholder="Image URL"
                             className="w-full input input-bordered input-accent"
                         />
-                        {/* <a href="" class="text-xs ml-1 text-gray-600 hover:text-primary">Want to upload a file instead?</a> */}
                     </div>
                     <div>
                         <label className="label">
@@ -136,7 +126,6 @@ export default function ProductsForm() {
                         </label>
                         <select
                             className="w-full input input-bordered input-accent"
-                            onChange={(e) => setCategoryId(e.target.value)}
                             name="category"
                             id=""
                         >
@@ -146,8 +135,8 @@ export default function ProductsForm() {
                         </select>
                     </div>
                 </div>
-                <div>
-                    <button className="btn btn-accent mt-10 w-full">Add New Product</button>
+                <div className='mt-5'>
+                    <button className="btn btn-accent w-full">Add New Product</button>
                 </div>
             </form>
         </>

@@ -1,7 +1,9 @@
-import Card from "../components/Card";
-import { useState } from "react";
 
-export default function Home() {
+import { useState } from "react";
+import Card from "./Card";
+import Navbar from "./Navbar";
+
+export default function HomePage({ setPage }) {
     const [products, setProducts] = useState([
         {
             "id": 36,
@@ -223,8 +225,9 @@ export default function Home() {
 
     return (
         <>
-            <div id="PAGE-HOME" className="p-3">
-
+            <Navbar setPage={setPage} />
+            {/* Home */}
+            <div id="PAGE-HOME" className="p-5">
                 {/* search */}
                 <form action="" method="get" className="flex justify-center items-center">
                     <input
@@ -235,9 +238,11 @@ export default function Home() {
                     />
                 </form>
 
-                <main className="grid grid-cols-2 gap-5 my-8 bg-white">
+                <main className="grid grid-cols-2 gap-5 px-10 my-8 bg-white">
                     {products.map(product => {
-                        return <Card key={product.id} product={product} />
+                        return (
+                            <Card product={product} key={product.id} />
+                        )
                     })}
                 </main>
             </div >

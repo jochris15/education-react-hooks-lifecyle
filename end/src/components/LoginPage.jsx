@@ -1,8 +1,9 @@
-import { useState } from 'react'
-
-export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export default function LoginPage({ setPage }) {
+    function handleSubmit(e) {
+        // karena submit itu ada refresh by default
+        e.preventDefault()
+        setPage('home')
+    }
 
     return (
         <>
@@ -12,7 +13,7 @@ export default function Login() {
                         Log In
                     </h1>
 
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleSubmit}>
                         <div>
                             <label className="label">
                                 <span className="text-base label-text">Email</span>
@@ -21,7 +22,7 @@ export default function Login() {
                                 type="text"
                                 placeholder="Enter Email"
                                 className="w-full input input-bordered input-accent"
-                                onChange={(e) => setEmail(e.target.value)}
+                                autoComplete="current-email"
                             />
                         </div>
                         <div>
@@ -32,7 +33,7 @@ export default function Login() {
                                 type="password"
                                 placeholder="Enter Password"
                                 className="w-full input input-bordered input-accent"
-                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete="current-password"
                             />
                         </div>
                         <div>
