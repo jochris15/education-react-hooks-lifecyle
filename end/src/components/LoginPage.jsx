@@ -1,8 +1,47 @@
+import axios from 'axios'
+import { useState } from 'react';
+import Toastify from 'toastify-js'
+
 export default function LoginPage({ setPage }) {
-    function handleSubmit(e) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    async function handleSubmit(e) {
         // karena submit itu ada refresh by default
         e.preventDefault()
-        setPage('home')
+        try {
+            const { data } = await axios.post(`https://h8-phase2-gc.vercel.app/apis/login`, { email, password })
+
+            localStorage.setItem('access_token', data.data.access_token)
+            setPage('home')
+            Toastify({
+                text: "Login success",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "#008000",
+                },
+                onClick: function () { } // Callback after click
+            }).showToast();
+        } catch (error) {
+            Toastify({
+                text: error.response.data.error,
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "#FF0000",
+                },
+                onClick: function () { } // Callback after click
+            }).showToast();
+        }
     }
 
     return (
@@ -23,6 +62,7 @@ export default function LoginPage({ setPage }) {
                                 placeholder="Enter Email"
                                 className="w-full input input-bordered input-accent"
                                 autoComplete="current-email"
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -34,10 +74,11 @@ export default function LoginPage({ setPage }) {
                                 placeholder="Enter Password"
                                 className="w-full input input-bordered input-accent"
                                 autoComplete="current-password"
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div>
-                            <button className="btn btn-accent">Log In</button>
+                            <button className="btn btn-accent w-full mt-5">Log In</button>
                         </div>
                     </form>
                 </div>
