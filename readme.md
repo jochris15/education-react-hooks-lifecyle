@@ -7,7 +7,7 @@ useEffect adalah sebuah react hook yang memungkinkan kita untuk mengsynchronize 
 useEffect(setup, dependecies?)
 ```
 [Dokumentasi useEffect](https://react.dev/reference/react/useEffect)
-### effect
+### re-render
 ```js
 useEffect(() => {
   // ini akan dijalankan setiap re-render
@@ -21,7 +21,7 @@ useEffect(() => {
 }, [])
 ```
 
-### updated
+### watcher
 ```js
 useEffect(() => {
   // ini akan dijalankan bila ada perubahan pada dependencies
