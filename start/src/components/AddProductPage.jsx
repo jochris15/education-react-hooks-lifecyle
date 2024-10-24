@@ -140,7 +140,7 @@ export default function AddProductPage({ setPage }) {
                     </div>
                 </div>
                 <div className="mt-5">
-                    <button className="w-full mt-5 justify-center py-2 px-4 border-2 border-black rounded-2xl text-sm font-medium text-white bg-gray-700 hover:bg-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    <button className="w-full mt-5 py-2 px-4 border-2 border-black rounded-2xl text-sm font-medium text-white bg-gray-700 hover:bg-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
                         Add New Product
                     </button>
                 </div>
